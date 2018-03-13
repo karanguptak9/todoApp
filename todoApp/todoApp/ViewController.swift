@@ -53,12 +53,11 @@ class ViewController: UITableViewController {
         preferredStyle: .alert)
         
         alert.addTextField(configurationHandler: nil)
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-            if let title = alert.textFields?[0].text
-            {
+           if let title = alert.textFields?[0].text {
                 self.addNewToDoItem(title: title)
             }
         }))
@@ -69,10 +68,17 @@ class ViewController: UITableViewController {
     private func addNewToDoItem(title: String)
     {
         let newIndex = todoVars.count
-        
         todoVars.append(ToDoVar(title: title))
-        
         tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .top)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if indexPath.row < todoVars.count
+        {
+            todoVars.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
+        }
     }
     
     override func viewDidLoad() {
