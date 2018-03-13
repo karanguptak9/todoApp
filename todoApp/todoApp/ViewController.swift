@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    private var todoVars = ToDoVar.getMockData()
+    private var todoVars = [ToDoVar]()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
        

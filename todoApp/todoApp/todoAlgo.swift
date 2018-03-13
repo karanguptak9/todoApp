@@ -18,14 +18,3 @@ class ToDoVar {
         self.done = false
     }
 }
-
-extension ToDoVar {
-    public class func getMockData() -> [ToDoVar] {
-        return [
-        ToDoVar(title: "milk"),
-        ToDoVar(title: "sugar"),
-        ToDoVar(title: "tea"),
-        ToDoVar(title: "water"),
-        ]
-    }
-}
