@@ -8,11 +8,40 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
+    private var todoVars = ToDoVar.getMockData()
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+       
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return todoVars.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell_todo", for: indexPath)
+        
+        if indexPath.row < todoVars.count
+        {
+            let item = todoVars[indexPath.row]
+            cell.textLabel?.text = item.title
+            
+            let accessory: UITableViewCellAccessoryType = item.done ? .checkmark : .none
+            cell.accessoryType = accessory
+        }
+        
+        return cell
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = "To-Do"
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,4 +51,5 @@ class ViewController: UIViewController {
 
 
 }
+
 
