@@ -46,11 +46,41 @@ class ViewController: UITableViewController {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
+    @objc func didTapAddItemButton(_ sender: UIBarButtonItem){
+    let alert = UIAlertController(
+        title: "Add New Item",
+        message: "Insert new item",
+        preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: nil)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            if let title = alert.textFields?[0].text
+            {
+                self.addNewToDoItem(title: title)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func addNewToDoItem(title: String)
+    {
+        let newIndex = todoVars.count
+        
+        todoVars.append(ToDoVar(title: title))
+        
+        tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .top)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.title = "To-Do"
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(ViewController.didTapAddItemButton(_:)))
     }
 
     override func didReceiveMemoryWarning() {
