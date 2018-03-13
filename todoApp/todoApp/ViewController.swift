@@ -80,6 +80,9 @@ class ViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .top)
         }
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(50.0)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
