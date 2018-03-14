@@ -8,13 +8,13 @@
 
 import Foundation
 
-class ToDoVar {
+class ToDoVar{
     var title: String
     var done: Bool
-
 
     public init(title: String ) {
         self.title = title
         self.done = false
     }
 }
+
