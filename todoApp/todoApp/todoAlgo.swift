@@ -16,5 +16,18 @@ class ToDoVar{
         self.title = title
         self.done = false
     }
+    func validTitle() -> Bool{
+        return title.count > 0
+    }
 }
+
+extension ToDoVar{
+    public class func getMockData() -> [ToDoVar]{
+        return [
+            ToDoVar(title: "Clean"),
+            ToDoVar(title: "Study"),
+        ]
+    }
+}
+
 

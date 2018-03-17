@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    private var todoVars = [ToDoVar]()
+    private var todoVars = ToDoVar.getMockData()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
        
@@ -74,8 +74,7 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if indexPath.row < todoVars.count
-        {
+        if indexPath.row < todoVars.count {
             todoVars.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .top)
         }
