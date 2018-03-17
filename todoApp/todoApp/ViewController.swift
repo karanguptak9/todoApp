@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UITableViewController {
-
+    
     private var todoVars = ToDoVar.getMockData()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,8 +25,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell_todo", for: indexPath)
         
-        if indexPath.row < todoVars.count
-        {
+        if indexPath.row < todoVars.count{
             let item = todoVars[indexPath.row]
             cell.textLabel?.text = item.title
             
@@ -65,15 +64,13 @@ class ViewController: UITableViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func addNewToDoItem(title: String)
-    {
+    private func addNewToDoItem(title: String){
         let newIndex = todoVars.count
         todoVars.append(ToDoVar(title: title))
         tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .top)
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
         if indexPath.row < todoVars.count {
             todoVars.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .top)
